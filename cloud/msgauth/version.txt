@@ -1,0 +1,8 @@
+github.com/emersion/go-msgauth @head.20251229
+
+go 1.18
+
+# modified by unixman:
+    * removed cmd (milter) which requires extra dependencies
+    * change dependency of ed25519 from x to go base
+
