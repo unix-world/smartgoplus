@@ -1,7 +1,7 @@
 
 // GO Lang :: SmartGo Extra :: Smart.Go.Framework
 // (c) 2020-present unix-world.org
-// r.20260114.2358 :: STABLE
+// r.20260216.2358 :: STABLE
 // [ XML ]
 
 // REQUIRE: go 1.19 or later
@@ -13,7 +13,7 @@ import (
 	smart "github.com/unix-world/smartgo"
 
 	"github.com/unix-world/smartgoext/xml-utils/etree"
-	"github.com/unix-world/smartgoext/xml-utils/c14n"
+	"github.com/unix-world/smartgoplus/xml-utils/c14n"
 )
 
 
@@ -26,6 +26,7 @@ func XmlC14NCanonize(xmlData string, subPath string, subNs string, withComments 
 	//--
 	defer smart.PanicHandler() // for XML Parser
 	//--
+	xmlData = smart.StrTrimWhitespaces(xmlData) // bug fix for: etree: invalid XML format, does not support extra LF after XML ends ; anyway trim both sides, is safer ; {{{SYNC-ETREE-XML-NEWLINE-AT-END-NOT-SUPPORTED}}}
 	if(xmlData == "") {
 		return nil, ""
 	} //end if

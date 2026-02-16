@@ -1,0 +1,4 @@
+github.com/DusanKasan/parsemail @head.20200501
+
+go 1.12
+
