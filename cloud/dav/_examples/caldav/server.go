@@ -1,10 +1,11 @@
 package main
 
+// contains fixes by unixman
+
 import (
 	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http/httptest"
 	"strings"
 	"testing"
@@ -40,7 +41,7 @@ func TestPropFindSupportedCalendarComponent(t *testing.T) {
 
 		res := w.Result()
 		defer res.Body.Close()
-		data, err := ioutil.ReadAll(res.Body)
+		data, err := io.ReadAll(res.Body) // unixman use io, os instead of io-util
 		if err != nil {
 			t.Error(err)
 		}
@@ -75,7 +76,7 @@ func TestPropFindRoot(t *testing.T) {
 
 	res := w.Result()
 	defer res.Body.Close()
-	data, err := ioutil.ReadAll(res.Body)
+	data, err := io.ReadAll(res.Body) // unixman use io, os instead of io-util
 	if err != nil {
 		t.Error(err)
 	}
@@ -130,7 +131,7 @@ func TestMultiCalendarBackend(t *testing.T) {
 
 	res := w.Result()
 	defer res.Body.Close()
-	data, err := ioutil.ReadAll(res.Body)
+	data, err := io.ReadAll(res.Body) // unixman use io, os instead of io-util
 	if err != nil {
 		t.Error(err)
 	}
@@ -149,7 +150,7 @@ func TestMultiCalendarBackend(t *testing.T) {
 
 	res = w.Result()
 	defer res.Body.Close()
-	data, err = ioutil.ReadAll(res.Body)
+	data, err = io.ReadAll(res.Body) // unixman use io, os instead of io-util
 	if err != nil {
 		t.Error(err)
 	}
@@ -169,7 +170,7 @@ func TestMultiCalendarBackend(t *testing.T) {
 
 	res = w.Result()
 	defer res.Body.Close()
-	data, err = ioutil.ReadAll(res.Body)
+	data, err = io.ReadAll(res.Body) // unixman use io, os instead of io-util
 	if err != nil {
 		t.Error(err)
 	}

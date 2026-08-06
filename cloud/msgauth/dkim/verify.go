@@ -1,5 +1,7 @@
 package dkim
 
+// contains fixes by unixman
+
 import (
 	"bufio"
 	"crypto"
@@ -8,7 +10,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"regexp"
 	"strconv"
 	"strings"
@@ -179,7 +180,7 @@ func parallelVerify(r io.Reader, h header, signatures []*signature, options *Ver
 
 			// Make sure we consume the whole reader, otherwise io.Copy on
 			// other side can block forever.
-			io.Copy(ioutil.Discard, pr)
+			io.Copy(io.Discard, pr) // unixman use io instead of io-util
 
 			v.Err = err
 			chans[i] <- v

@@ -14,12 +14,13 @@
 
 package main
 
+// contains fixes by unixman
+
 import (
 	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -101,7 +102,7 @@ func main() {
 
 		switch filepath.Ext(filename) {
 		case ".xmp":
-			b, err = ioutil.ReadAll(f)
+			b, err = io.ReadAll(f) // unixman use io instead of io-util
 			if err != nil {
 				fail(err)
 			}

@@ -6,3 +6,5 @@ go 1.18
     * removed cmd (milter) which requires extra dependencies
     * change dependency of ed25519 from x to go base
 
+contains fixes by unixman: # r.20260221
+	* unixman use io, os instead of io-util

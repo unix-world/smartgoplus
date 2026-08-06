@@ -6,3 +6,5 @@ require:
 	github.com/emersion/go-ical
 	github.com/emersion/go-vcard
 
+contains fixes by unixman: # r.20260221
+	* unixman use io, os instead of io-util

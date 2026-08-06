@@ -2,3 +2,5 @@ github.com/trimmer-io/go-xmp @head.20231228
 
 go 1.17
 
+contains fixes by unixman: # r.20260221
+	* unixman use io, os instead of io-util

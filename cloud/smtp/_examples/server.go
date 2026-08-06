@@ -1,5 +1,7 @@
 package main
 
+// contains fixes by unixman
+
 import (
 	"bufio"
 	"bytes"
@@ -7,7 +9,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net"
 	"strings"
@@ -128,7 +129,7 @@ func (s *session) Data(r io.Reader) error {
 	if s.backend.dataErr != nil {
 
 		if s.backend.dataErrOffset != 0 {
-			io.CopyN(ioutil.Discard, r, s.backend.dataErrOffset)
+			io.CopyN(io.Discard, r, s.backend.dataErrOffset) // unixman use io instead of io-util
 		}
 
 		err := s.backend.dataErr
@@ -138,7 +139,7 @@ func (s *session) Data(r io.Reader) error {
 		return err
 	}
 
-	if b, err := ioutil.ReadAll(r); err != nil {
+	if b, err := io.ReadAll(r); err != nil { // // unixman use io instead of io-util
 		if s.backend.dataErrors != nil {
 			s.backend.dataErrors <- err
 		}
@@ -460,7 +461,7 @@ func TestServerPanicRecover(t *testing.T) {
 
 	s.Backend.(*backend).panicOnMail = true
 	// Don't log panic in tests to not confuse people who run 'go test'.
-	s.ErrorLog = log.New(ioutil.Discard, "", 0)
+	s.ErrorLog = log.New(io.Discard, "", 0) // unixman use io instead of io-util
 
 	io.WriteString(c, "MAIL FROM:<alice@wonderland.book>\r\n")
 	scanner.Scan()

@@ -2,3 +2,5 @@ github.com/DusanKasan/parsemail @head.20200501
 
 go 1.12
 
+contains fixes by unixman: # r.20260221
+	* unixman use io, os instead of io-util

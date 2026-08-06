@@ -1,15 +1,13 @@
 
-// GO Lang :: SmartGo Extra :: Smart.Go.Framework
-// (c) 2020-present unix-world.org
-// r.20260216.2358 :: STABLE
+// GO Lang :: SmartGo Plus :: Smart.Go.Framework
+// (c) 2021-present, unix-world.org
+// r.20260805.2358 :: STABLE
 // [ XML ]
 
-// REQUIRE: go 1.19 or later
-package smartgoext
+// REQUIRE: go 1.22 or later
+package smartgoplus
 
 import (
-	"strings"
-
 	smart "github.com/unix-world/smartgo"
 
 	"github.com/unix-world/smartgoext/xml-utils/etree"

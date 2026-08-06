@@ -1,12 +1,13 @@
 package smtp
 
+// contains fixes by unixman
+
 import (
 	"crypto/tls"
 	"encoding/base64"
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/textproto"
 	"regexp"
@@ -986,7 +987,7 @@ func (c *Conn) handleData(arg string) {
 	r := newDataReader(c)
 	code, enhancedCode, msg := dataErrorToStatus(c.Session().Data(r))
 	r.limited = false
-	io.Copy(ioutil.Discard, r) // Make sure all the data has been consumed
+	io.Copy(io.Discard, r) // Make sure all the data has been consumed ; unixman use io instead of io-util
 	c.writeResponse(code, enhancedCode, msg)
 }
 
@@ -1026,7 +1027,7 @@ func (c *Conn) handleBdat(arg string) {
 		c.writeResponse(552, EnhancedCode{5, 3, 4}, "Max message size exceeded")
 
 		// Discard chunk itself without passing it to backend.
-		io.Copy(ioutil.Discard, io.LimitReader(c.text.R, int64(size)))
+		io.Copy(io.Discard, io.LimitReader(c.text.R, int64(size))) // unixman use io instead of io-util
 
 		c.reset()
 		return
@@ -1079,7 +1080,7 @@ func (c *Conn) handleBdat(arg string) {
 	if err != nil {
 		// Backend might return an error early using CloseWithError without consuming
 		// the whole chunk.
-		io.Copy(ioutil.Discard, chunk)
+		io.Copy(io.Discard, chunk) // unixman use io instead of io-util
 
 		c.writeResponse(dataErrorToStatus(err))
 
@@ -1215,7 +1216,7 @@ func (c *Conn) handleDataLMTP() {
 	if !ok {
 		// Fallback to using a single status for all recipients.
 		err := c.Session().Data(r)
-		io.Copy(ioutil.Discard, r) // Make sure all the data has been consumed
+		io.Copy(io.Discard, r) // Make sure all the data has been consumed ; unixman use io instead of io-util
 		for _, rcpt := range c.recipients {
 			status.SetStatus(rcpt, err)
 		}
@@ -1237,7 +1238,7 @@ func (c *Conn) handleDataLMTP() {
 			}()
 
 			status.fillRemaining(lmtpSession.LMTPData(r, status))
-			io.Copy(ioutil.Discard, r) // Make sure all the data has been consumed
+			io.Copy(io.Discard, r) // Make sure all the data has been consumed ; unixman use io instead of io-util
 			done <- true
 		}()
 	}

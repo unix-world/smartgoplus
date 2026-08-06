@@ -1,0 +1,10 @@
+module github.com/tidwall/wal @head.20231212
+
+go 1.13
+
+require:
+	tidwall/gjson
+	tidwall/tinylru
+
+contains fixes by unixman: # r.20260221
+	* unixman use io, os instead of io-util
