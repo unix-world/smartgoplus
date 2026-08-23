@@ -5,9 +5,9 @@
 package interp
 
 import (
-	"golang.org/x/sync/syncmap"
+	"sync"
 )
 
 var (
-	globalAsyncEvent syncmap.Map
+	globalAsyncEvent sync.Map
 )
