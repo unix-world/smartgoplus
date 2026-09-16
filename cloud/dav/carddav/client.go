@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/unix-world/smartgoext/cloud/vcard"
-
 	webdav "github.com/unix-world/smartgoplus/cloud/dav"
 	"github.com/unix-world/smartgoplus/cloud/dav/internal"
 )

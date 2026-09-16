@@ -1,9 +1,9 @@
 
 // GO Lang :: SmartGo Plus :: Smart.Go.Framework
 // (c) 2021-present, unix-world.org
-// r.20260823.2358 :: STABLE
+// r.20260907.2358 :: STABLE
 
-// REQUIRE: go 1.22 or later
+// REQUIRE: go 1.24 or later
 package smartgoplus
 
 import (
@@ -14,7 +14,7 @@ import (
 //-----
 
 const (
-	VERSION string = "v.20260823.2358"
+	VERSION string = "v.20260907.2358"
 	NAME string = "SmartGoPlus"
 )
 

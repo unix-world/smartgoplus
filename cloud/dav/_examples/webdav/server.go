@@ -12,7 +12,7 @@ import (
 
 func main() {
 	var addr string
-	flag.StringVar(&addr, "addr", ":8080", "listening address")
+	flag.StringVar(&addr, "addr", ":16088", "listening address")
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(), "usage: %s [options...] [directory]\n", os.Args[0])
 		flag.PrintDefaults()
@@ -28,5 +28,6 @@ func main() {
 		FileSystem: webdav.LocalFileSystem(path),
 	}
 	log.Printf("WebDAV server listening on %v", addr)
-	log.Fatal(http.ListenAndServe(addr, &handler))
+//	log.Fatal(http.ListenAndServe(addr, &handler))
+	log.Fatal(http.ListenAndServeTLS(addr, "cert.crt", "cert.key", &handler))
 }

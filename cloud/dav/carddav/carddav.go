@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/unix-world/smartgoext/cloud/vcard"
-
 	webdav "github.com/unix-world/smartgoplus/cloud/dav"
 	"github.com/unix-world/smartgoplus/cloud/dav/internal"
 )
@@ -29,6 +28,9 @@ type AddressBook struct {
 	Description          string
 	MaxResourceSize      int64
 	SupportedAddressData []AddressDataType
+	// ReadOnly reports that the current user may only read this address book.
+	// It controls the DAV:current-user-privilege-set reported by the server.
+	ReadOnly bool
 }
 
 func (ab *AddressBook) SupportsAddressData(contentType, version string) bool {

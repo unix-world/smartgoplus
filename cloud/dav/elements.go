@@ -1,4 +1,4 @@
-package dav
+package webdav
 
 import (
 	"encoding/xml"

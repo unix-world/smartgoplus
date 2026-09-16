@@ -1,5 +1,7 @@
 package internal
 
+// modified by unixman
+
 import (
 	"encoding/xml"
 	"errors"
@@ -121,7 +123,7 @@ func (h *Handler) handleOptions(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	caps = append([]string{"1", "3"}, caps...)
+	caps = append([]string{"1", "2", "3"}, caps...) // unixman: add 2 for MacOS
 
 	w.Header().Add("DAV", strings.Join(caps, ", "))
 	w.Header().Add("Allow", strings.Join(allow, ", "))

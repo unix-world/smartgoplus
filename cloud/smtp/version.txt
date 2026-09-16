@@ -1,9 +1,0 @@
-github.com/emersion/go-smtp @head.20251229
-
-go 1.13
-
-require:
-	github.com/emersion/go-sasl
-
-contains fixes by unixman: # r.20260221
-	* unixman use io, os instead of io-util
